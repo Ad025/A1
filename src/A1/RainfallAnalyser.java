@@ -1,35 +1,34 @@
 package A1;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import textio.TextIO;
+
+//import java.io.BufferedReader;
+//import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
-
-// TODO: you must use TextIO in your solution to read from the data files
 
 public class RainfallAnalyser {
+    private static final int IDX_YEAR = 2;
+    private static final int IND_MONTH = 3;
+    private static final int IND_DAY = 4;
+    private static final int IND_RAIN = 5;
+    private static final int NUM_MONTHS = 12;
+    private static final int NUM_DAYS = 31;
+    private static final double EMPTY_RAIN_VAL = -0.001;
+
+
     public static void main(String[] args) throws IOException {
         System.out.println("A1");
-
-        String pathFile = "src\\IDCJAC0009_031205_1800_Data.csv";
-        BufferedReader csvReader = new BufferedReader(new FileReader(pathFile));
-        String row;
-//        int arr[][] ;
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        while ((row = csvReader.readLine()) != null) {
-//            System.out.println(row);
-            String[] data = row.split(",");
-
-            String year = data[2];
-            System.out.println(year);
-            int intYear = Integer.parseInt(year);
-            System.out.println(intYear);
-
+        System.out.println("\n ************** Part A ************ \n ");
+        try {
+            System.out.println("Enter path");
+            String pathFile = TextIO.getln();
+            TextIO.readFile(pathFile);
         }
-        csvReader.close();
-        // TODO: add your solution code here
-    }
+        catch (IllegalArgumentException e) {
+            System.out.println("Failed to process file");
+        }
 
-    // TODO: consider using static methods
+    }
 }

@@ -1,54 +1,49 @@
 package A1;
 
-import A1.textio.TextIO;
-import javafx.scene.text.Text;
+import textio.TextIO;
 
 //import java.io.BufferedReader;
 //import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 //import java.util.ArrayList;
 
 
-public class MainA1 {
+public class MainA1{
     private static final int IDX_YEAR = 2;
     private static final int IND_MONTH = 3;
     private static final int IND_DAY = 4;
     private static final int IND_RAIN = 5;
     private static final int NUM_MONTHS = 12;
     private static final int NUM_DAYS = 31;
-    private static final double EMPTY_RAIN_VAL = -0.001;
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)
+            throws IOException {
         System.out.println("A1");
         System.out.println("\n ************** Part A ************ \n ");
-        ;
+
 
 //        String pathFile = "src\\A1\\MountSheridanStationCNS.csv";
-        System.out.println("Enter path");
+        System.out.println("Enter path name:");
         String pathFile = TextIO.getln();
-
 //        BufferedReader csvReader = new BufferedReader(new FileReader(pathFile));
 
         TextIO.readFile(pathFile);
+
+
+
 
 
         String row;
 
         int count = -1;
         double[][] rainDaily = new double[NUM_MONTHS][NUM_DAYS];
-        for (int m = 0; m < NUM_MONTHS; m++) {
-            for (int d = 0; d < NUM_DAYS; d++) {
-                rainDaily[m][d] = EMPTY_RAIN_VAL;
-
-            }
-        }
         while (!TextIO.eof()) {
             row = TextIO.getln();
             count++;
             if (count < 1)
                 continue;
+
             String[] data = row.split(",");
 
             String str = data[IDX_YEAR];
@@ -89,10 +84,6 @@ public class MainA1 {
             for (int d = 0; d < NUM_DAYS; d++) {
                 monthTotal += rainDaily[m][d];
                 var rain = rainDaily[m][d];
-                if (rain == EMPTY_RAIN_VAL) {
-//                    System.out.println("ignore" + m + "," + d);
-                    continue;
-                }
                 monthTotal += rain;
                 if (maxDay < rain) {
                     maxDay = rain;
@@ -107,17 +98,10 @@ public class MainA1 {
 
 //            System.out.println("monthTotal=" + monthTotal + ", min=" + minDay + " " + "max=" + maxDay);
 
-            System.out.printf("Monthtotal= %.2f, Min= %.2f, Max= %.2f \n", monthTotal, minDay, maxDay);
+            System.out.printf("monthtotal= %.2f, Min= %.2f, Max= %.2f \n", monthTotal, minDay, maxDay);
 
 
         }
-
-//        TextIO.writeStandardOutput("src\\A1\\test.csv");
-
-//        TextIO.writeStream("src\\A1\\tesjt.csv") ;
-        TextIO.writeFile("src\\A1\\test.csv");
-
-
 ////        csvReader.close();
         // TODO: add your solution code here
 

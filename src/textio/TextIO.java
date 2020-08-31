@@ -1,4 +1,4 @@
-package A1.textio;
+package textio;
 
 import javax.swing.*;
 import java.io.*;
